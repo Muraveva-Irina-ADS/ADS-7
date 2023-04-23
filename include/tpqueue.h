@@ -39,13 +39,13 @@ class TPQueue {
     }
   }
   T pop() {
-    if (!Empty()) {
-      Item* item = head->next;
-      T value = head->data;
-      delete head;
-      head = item;
-      return value;
-    }
+    if (Empty()) 
+        throw std::string("Empty!");
+    Item* item = head->next;
+    T value = head->data;
+    delete head;
+    head = item;
+    return value;
   }
 };
 
