@@ -3,7 +3,7 @@
 #define INCLUDE_TPQUEUE_H_
 
 template<typename T>
-class TPQueue {  
+class TPQueue {
  private:
     struct Item {
       T data;
@@ -17,7 +17,9 @@ class TPQueue {
   }
 
  public:
-  TPQueue(): head(nullptr) {}
+  TPQueue() {
+      head = nullptr;
+  }
   bool Empty() const {
     return (head == nullptr);
   }
@@ -26,20 +28,21 @@ class TPQueue {
     if (head == nullptr)
       head = create(value);
     else if (value.prior <= head->data.prior) {
-      Item* current = head;
-      while ((current->next != nullptr) && (current->next->data.prior > value.prior))
-        current = current->next;
-      item->next = current->next;
-      current->next = item;
-    } else {
+      Item* c = head;
+      while ((c->next != nullptr) && (c->next->data.prior > value.prior))
+        c = c->next;
+      item->next = c->next;
+      c->next = item;
+      } else {
       item->next = head;
       head = item;
     }
   }
-  const T pop() {
+  T pop() {
     if (!Empty()) {
       Item* item = head->next;
       T value = head->data;
+      delete head;
       head = item;
       return value;
     }
