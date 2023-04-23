@@ -3,8 +3,8 @@
 #define INCLUDE_TPQUEUE_H_
 
 template<typename T>
-class TPQueue {
-private:
+class TPQueue {  
+ private:
     struct Item {
       T data;
       Item* next;
@@ -16,7 +16,7 @@ private:
     return item;
   }
 
-public:
+ public:
   TPQueue(): head(nullptr) {}
   bool Empty() const {
     return (head == nullptr);
@@ -31,13 +31,12 @@ public:
         current = current->next;
       item->next = current->next;
       current->next = item;
-    } 
-    else {
+    } else {
       item->next = head;
       head = item;
     }
   }
-  const T& pop() {
+  const T pop() {
     if (!Empty()) {
       Item* item = head->next;
       T value = head->data;
