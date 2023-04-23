@@ -20,14 +20,14 @@ class TPQueue {
   TPQueue() {
       head = nullptr;
   }
-  bool Empty() const {
-    return (head == nullptr);
+  bool Empty() {
+    return head == nullptr;
   }
   void push(const T& value) {
     Item* item = create(value);
-    if (head == nullptr)
+    if (head == nullptr) {
       head = create(value);
-    else if (value.prior <= head->data.prior) {
+    } else if (value.prior <= head->data.prior) {
       Item* c = head;
       while ((c->next != nullptr) && (c->next->data.prior > value.prior))
         c = c->next;
